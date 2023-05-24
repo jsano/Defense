@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3680780600952171911}
   - component: {fileID: 5357281769716499385}
   m_Layer: 0
-  m_Name: Unit
-  m_TagString: Unit
+  m_Name: Ally
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxHealth: 0
+  maxHp: 0
+  atk: 0
   atkspd: 1
 --- !u!50 &5357281769716499385
 Rigidbody2D:
