@@ -27,11 +27,15 @@ public class Unit : MonoBehaviour
     {
         attacking = new List<Collider2D>();
         hp = maxHp;
-        Transform bar = Instantiate(_bar, transform.position+_bar.transform.position, transform.rotation).transform;
-        bar.parent = transform;
-        bar.name = "HP";
+        GameObject pivot = new GameObject();
+        pivot.name = "Pivot";
+        pivot.transform.position = new Vector3(-0.5f, 1, 0);
+        pivot.transform.SetParent(transform, false); // Update world position
+        Transform bar = Instantiate(_bar).transform;
+        bar.transform.position = new Vector3(0.5f, 0, 0);
+        bar.SetParent(pivot.transform, false);
         Vector3 temp = bar.localScale;
-        bar.transform.localScale = new Vector3(hpBarLen, temp.y, temp.z);
+        bar.localScale = new Vector3(hpBarLen, temp.y, temp.z);
         if (tag.CompareTo("Enemy") == 0) dest = new Vector3(-10, transform.position.y, 0); 
         else dest = new Vector3(10, transform.position.y, 0);
     }
@@ -43,7 +47,7 @@ public class Unit : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Transform bar = transform.Find("HP");
+        Transform bar = transform.Find("Pivot");
         Vector3 temp = bar.localScale;
         bar.localScale = new Vector3(hpBarLen * (hp/maxHp), temp.y, temp.z);
         if (attacking.Count == 0) {
