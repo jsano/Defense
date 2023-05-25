@@ -22,12 +22,14 @@ public class Unit : MonoBehaviour
     [Header("Graphics")]
     public GameObject barContainer;
     public GameObject strike;
+    public GameObject dissolve;
 
     // Start is called before the first frame update
     void Start()
     {
         attacking = new List<Collider2D>();
         hp = maxHp;
+        period = atkspd/2;
         Instantiate(barContainer, transform, false);
         if (tag.CompareTo("Enemy") == 0) dest = new Vector3(-10, transform.position.y, 0); 
         else dest = new Vector3(10, transform.position.y, 0);
@@ -37,13 +39,15 @@ public class Unit : MonoBehaviour
     void Update()
     {
         if (hp <= 0) {
+            GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
+            ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
+            p.startColor = GetComponent<SpriteRenderer>().color;
             Destroy(gameObject);
             return;
         }
         if (hp > maxHp) hp = maxHp;
         if (attacking.Count == 0) {
-            Vector3 dir = dest - transform.position;
-            transform.Translate(Vector3.Scale(dir.normalized, transform.right)*speed*Time.deltaTime);
+            transform.position += transform.right*speed*Time.deltaTime;
         } else {
             Attack();
         }
@@ -56,7 +60,7 @@ public class Unit : MonoBehaviour
             period = 0;
             attacking[0].GetComponent<Unit>().receiveDamage(atk);
             en = Math.Min(en+25, 100);
-            Instantiate(strike, transform.position + 0.5f*transform.right, transform.rotation);
+            Instantiate(strike, transform.position + 0.8f*transform.right, transform.rotation);
         }
         period += Time.deltaTime;
     }

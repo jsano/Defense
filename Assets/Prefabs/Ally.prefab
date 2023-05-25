@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3833902013386426069}
   - component: {fileID: 3833902013386426070}
   - component: {fileID: 3833902013386426059}
-  - component: {fileID: 1168805458894257156}
   - component: {fileID: 7598785648759804474}
+  - component: {fileID: 1168805458894257156}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Ally
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b956bf0f2beb6cd429a159ff82bc905c, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5793958, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113,27 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 5}
   m_EdgeRadius: 0
---- !u!114 &1168805458894257156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3833902013386426071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7903d1b88445b4f4a89ca3ddbe7f420d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  maxHp: 0
-  atk: 0
-  atkspd: 1
-  barLen: 1
-  barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
-  hpBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
-  enBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
-  strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
 --- !u!50 &7598785648759804474
 Rigidbody2D:
   serializedVersion: 4
@@ -155,3 +134,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1168805458894257156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833902013386426071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7903d1b88445b4f4a89ca3ddbe7f420d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  maxHp: 0
+  atk: 0
+  atkspd: 1
+  barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
+  strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
+  dissolve: {fileID: 9192074205629271730, guid: d8bcb89463063d849bdc3af668c66042, type: 3}

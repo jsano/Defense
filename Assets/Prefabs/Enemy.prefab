@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8d3071d606e31f54f910645ffe778950, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,8 +128,6 @@ MonoBehaviour:
   maxHp: 0
   atk: 0
   atkspd: 1
-  barLen: 1
   barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
-  hpBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
-  enBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
   strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
+  dissolve: {fileID: 9192074205629271730, guid: d8bcb89463063d849bdc3af668c66042, type: 3}
