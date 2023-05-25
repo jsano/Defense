@@ -13,19 +13,25 @@ public class Unit : MonoBehaviour
     public float speed = 5f;
     public float maxHp;
     private float hp;
-    private float hpbarlen = 1;
     public float atk;
     public float atkspd;
     private float period;
+
+    [Header("Graphics")]
+    public float hpBarLen = 1;
+    public GameObject _bar;
+    public GameObject strike;
 
     // Start is called before the first frame update
     void Start()
     {
         attacking = new List<Collider2D>();
         hp = maxHp;
-        Transform bar = transform.Find("HP");
-        Vector3 temp = bar.transform.localScale;
-        bar.transform.localScale = new Vector3(hpbarlen, temp.y, temp.z);
+        Transform bar = Instantiate(_bar, transform.position+_bar.transform.position, transform.rotation).transform;
+        bar.parent = transform;
+        bar.name = "HP";
+        Vector3 temp = bar.localScale;
+        bar.transform.localScale = new Vector3(hpBarLen, temp.y, temp.z);
         if (tag.CompareTo("Enemy") == 0) dest = new Vector3(-10, transform.position.y, 0); 
         else dest = new Vector3(10, transform.position.y, 0);
     }
@@ -38,11 +44,11 @@ public class Unit : MonoBehaviour
             return;
         }
         Transform bar = transform.Find("HP");
-        Vector3 temp = bar.transform.localScale;
-        bar.transform.localScale = new Vector3(hpbarlen * (hp/maxHp), temp.y, temp.z);
+        Vector3 temp = bar.localScale;
+        bar.localScale = new Vector3(hpBarLen * (hp/maxHp), temp.y, temp.z);
         if (attacking.Count == 0) {
             Vector3 dir = dest - transform.position;
-            transform.Translate(dir.normalized*speed*Time.deltaTime);
+            transform.Translate(Vector3.Scale(dir.normalized, transform.right)*speed*Time.deltaTime);
         } else {
             Attack();
         }
@@ -54,6 +60,7 @@ public class Unit : MonoBehaviour
         if (period > atkspd) {
             period = 0;
             attacking[0].GetComponent<Unit>().receiveDamage(atk);
+            Instantiate(strike, transform.position + 0.5f*transform.right, transform.rotation);
         }
         period += Time.deltaTime;
     }
