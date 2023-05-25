@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Strike : MonoBehaviour
+public class BarContainer : MonoBehaviour
 {
-
-    private float life = 0.2f;
-    private float period = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +13,6 @@ public class Strike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (period >= life) Destroy(gameObject);
-        period += Time.deltaTime;
+        
     }
 }

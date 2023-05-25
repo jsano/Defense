@@ -128,6 +128,8 @@ MonoBehaviour:
   maxHp: 0
   atk: 0
   atkspd: 1
-  hpBarLen: 1
-  _bar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
+  barLen: 1
+  barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
+  hpBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
+  enBar: {fileID: 2463544346388248301, guid: 34d81fb3265cca94882e3fa5a06bc5d4, type: 3}
   strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
