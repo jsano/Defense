@@ -38,7 +38,7 @@ public class Unit : MonoBehaviour
         hp = maxHp;
         period = atkspd/2;
         Instantiate(barContainer, transform, false);
-        if (tag.CompareTo("Enemy") == 0) dest = new Vector3(-10, transform.position.y, 0); 
+        if (tag == "Enemy") dest = new Vector3(-10, transform.position.y, 0); 
         else dest = new Vector3(10, transform.position.y, 0);
     }
 
@@ -82,7 +82,7 @@ public class Unit : MonoBehaviour
         en = Math.Min(en+25, 100);
         GameObject s;
         if (ranged) {
-            s = Instantiate(rangedItem, transform.position + new Vector3(0.5f, 0, 0), transform.rotation);
+            s = Instantiate(rangedItem, transform.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, transform.eulerAngles.y, -90));
             s.GetComponent<RangedItem>().attacking = attacking;
             s.tag = tag + "P";
         }

@@ -24,8 +24,8 @@ public class RangedItem : MonoBehaviour
         if (period >= lifetime) Destroy(gameObject);
         Vector3 dir;
         if (attacking == null) {
-            if (tag.CompareTo("Enemy") == 0) dir = new Vector3(-10, transform.position.y, 0); 
-            else dir = new Vector3(10, transform.position.y, 0);
+            if (tag == "EnemyP") dir = new Vector3(-1, 0, 0); 
+            else dir = new Vector3(1, 0, 0);
         }
         else dir = (attacking.transform.position - transform.position).normalized;
         transform.position += dir * speed * Time.deltaTime;
