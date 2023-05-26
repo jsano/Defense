@@ -7,14 +7,14 @@ public class Unit : MonoBehaviour
 {
 
     private Vector3 dest;
-    
+    private bool toDestroy = false;
     private GameObject attacking; // First is current target
 
     [Header("Info")]
     public int cost;
 
     [Header("Stats")]
-    public float speed = 5f;
+    public float speed;
     public float maxHp;
     private float hp;
     private float en = 0;
@@ -25,8 +25,9 @@ public class Unit : MonoBehaviour
 
     [Header("Graphics")]
     public GameObject barContainer;
-    public GameObject strike; // null if ranged
-    public GameObject rangedItem; // null if physical
+    public GameObject strike; 
+    public GameObject rangedItem;
+    public bool ranged;
     public GameObject dissolve;
     private int layer;
 
@@ -45,34 +46,48 @@ public class Unit : MonoBehaviour
     void Update()
     {
         if (hp <= 0) {
-            GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
-            ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
-            p.startColor = GetComponent<SpriteRenderer>().color;
-            Destroy(gameObject);
+            toDestroy = true;
             return;
         }
         if (hp > maxHp) hp = maxHp;
-        StartCoroutine(FindTarget());
+        if (attacking == null) StartCoroutine(FindTarget());
         if (attacking == null) {
+            period = atkspd/2;
             transform.position += transform.right*speed*Time.deltaTime;
         } else {
-            Attack();
+            if (period > atkspd) {
+                period = 0;
+                Attack();
+            }
+            period += Time.deltaTime;
         }
 
     }
 
+    void LateUpdate()
+    {
+        if (toDestroy) {
+            GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
+            ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
+            p.startColor = GetComponent<SpriteRenderer>().color;
+            Destroy(gameObject);
+        }
+    }
+
     private void Attack()
     {
-        if (period > atkspd) {
-            period = 0;
-            attacking.GetComponent<Unit>().receiveDamage(atk);
-            en = Math.Min(en+25, 100);
-            GameObject s;
-            if (rangedItem == null) s = Instantiate(strike, attacking.transform.position, transform.rotation);
-            else s = Instantiate(rangedItem);
-            s.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
+        if (attacking == null) return;
+        attacking.GetComponent<Unit>().receiveDamage(atk);
+        Debug.Log(tag + " " + attacking.tag);
+        en = Math.Min(en+25, 100);
+        GameObject s;
+        if (ranged) {
+            s = Instantiate(rangedItem, transform.position + new Vector3(0.5f, 0, 0), transform.rotation);
+            s.GetComponent<RangedItem>().attacking = attacking;
+            s.tag = tag + "P";
         }
-        period += Time.deltaTime;
+        else s = Instantiate(strike, attacking.transform.position, transform.rotation);
+        s.GetComponent<SpriteRenderer>().sortingOrder = attacking.layer + 1;
     }
 
     private IEnumerator FindTarget()
