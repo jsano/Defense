@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3833902013386426069}
   - component: {fileID: 3833902013386426070}
-  - component: {fileID: 3833902013386426059}
-  - component: {fileID: 7598785648759804474}
   - component: {fileID: 1168805458894257156}
   m_Layer: 0
   m_Name: Ally
@@ -87,53 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3833902013386426059
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3833902013386426071}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 5}
-  m_EdgeRadius: 0
---- !u!50 &7598785648759804474
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3833902013386426071}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &1168805458894257156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +102,8 @@ MonoBehaviour:
   maxHp: 0
   atk: 0
   atkspd: 1
+  range: 1
   barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
   strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
+  rangedItem: {fileID: 0}
   dissolve: {fileID: 9192074205629271730, guid: d8bcb89463063d849bdc3af668c66042, type: 3}

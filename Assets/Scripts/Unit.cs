@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
 
     private Vector3 dest;
     
-    private List<Collider2D> attacking; // First is current target
+    private GameObject attacking; // First is current target
 
     [Header("Info")]
     public int cost;
@@ -21,22 +21,19 @@ public class Unit : MonoBehaviour
     public float atk;
     public float atkspd;
     private float period;
+    public float range = 0.75f;
 
     [Header("Graphics")]
     public GameObject barContainer;
-    public GameObject strike;
+    public GameObject strike; // null if ranged
+    public GameObject rangedItem; // null if physical
     public GameObject dissolve;
     private int layer;
 
     void Awake()
     {
+        //InvokeRepeating("FindTarget", 0, 0.1f);
         layer = GetComponent<SpriteRenderer>().sortingOrder;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        attacking = new List<Collider2D>();
         hp = maxHp;
         period = atkspd/2;
         Instantiate(barContainer, transform, false);
@@ -55,7 +52,8 @@ public class Unit : MonoBehaviour
             return;
         }
         if (hp > maxHp) hp = maxHp;
-        if (attacking.Count == 0) {
+        StartCoroutine(FindTarget());
+        if (attacking == null) {
             transform.position += transform.right*speed*Time.deltaTime;
         } else {
             Attack();
@@ -67,12 +65,36 @@ public class Unit : MonoBehaviour
     {
         if (period > atkspd) {
             period = 0;
-            attacking[0].GetComponent<Unit>().receiveDamage(atk);
+            attacking.GetComponent<Unit>().receiveDamage(atk);
             en = Math.Min(en+25, 100);
-            GameObject s = Instantiate(strike, transform.position + 0.8f*transform.right, transform.rotation);
+            GameObject s;
+            if (rangedItem == null) s = Instantiate(strike, attacking.transform.position, transform.rotation);
+            else s = Instantiate(rangedItem);
             s.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
         }
         period += Time.deltaTime;
+    }
+
+    private IEnumerator FindTarget()
+    {
+        GameObject[] targets;
+        if (tag == "Ally") targets = GameObject.FindGameObjectsWithTag("Enemy");
+        else targets = GameObject.FindGameObjectsWithTag("Ally");
+        float min = Mathf.Infinity;
+        GameObject nearest = null;
+        foreach (GameObject t in targets) {
+            float dist = Math.Abs(transform.position.x - t.transform.position.x);
+            if (dist < min) {
+                min = dist;
+                nearest = t;
+            }
+        }
+        if (nearest != null && min <= range) {
+            // Enemy will start attacking 1 frame later than ally for QOL
+            if (tag == "Enemy") yield return new WaitForSeconds(Time.deltaTime);
+            attacking = nearest;
+        }
+        else attacking = null;
     }
 
     public void receiveDamage(float dmg) 
@@ -81,28 +103,6 @@ public class Unit : MonoBehaviour
         en = Math.Min(en+1, 100);
     }    
     
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Enemy" && tag == "Ally") {
-            attacking.Add(other);
-        }
-        if (other.tag == "Ally" && tag == "Enemy") {
-            StartCoroutine(temp(other));
-        }
-        
-    }
-
-    // Enemy will start attacking 1 frame later than ally for QOL
-    private IEnumerator temp(Collider2D other){
-        yield return new WaitForSeconds(Time.deltaTime);
-        attacking.Add(other);
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        attacking.Remove(other);
-    }
-
     public float getCurrentHP()
     {
         return hp;

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7118388977324117432}
   - component: {fileID: 8508809262140959257}
-  - component: {fileID: 477833388094693667}
   - component: {fileID: 28105261964800716}
   m_Layer: 0
   m_Name: Enemy
@@ -86,32 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &477833388094693667
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5719184081644842298}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 5}
-  m_EdgeRadius: 0
 --- !u!114 &28105261964800716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,10 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7903d1b88445b4f4a89ca3ddbe7f420d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 0
   speed: 0
   maxHp: 0
   atk: 0
   atkspd: 1
+  range: 1
   barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
   strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}
+  rangedItem: {fileID: 0}
   dissolve: {fileID: 9192074205629271730, guid: d8bcb89463063d849bdc3af668c66042, type: 3}
