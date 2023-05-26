@@ -10,6 +10,9 @@ public class Unit : MonoBehaviour
     
     private List<Collider2D> attacking; // First is current target
 
+    [Header("Info")]
+    public int cost;
+
     [Header("Stats")]
     public float speed = 5f;
     public float maxHp;

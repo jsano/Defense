@@ -11,6 +11,8 @@ public class UnitButton : MonoBehaviour
     void Awake()
     {
         GetComponent<Image>().color = src.GetComponent<SpriteRenderer>().color;
+        Transform t = transform.Find("Cost");
+        t.GetComponent<Text>().text = src.GetComponent<Unit>().cost + "";
     }
 
     // Update is called once per frame
