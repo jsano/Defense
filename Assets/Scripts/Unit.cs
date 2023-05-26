@@ -23,6 +23,12 @@ public class Unit : MonoBehaviour
     public GameObject barContainer;
     public GameObject strike;
     public GameObject dissolve;
+    private int layer;
+
+    void Awake()
+    {
+        layer = GetComponent<SpriteRenderer>().sortingOrder;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +66,8 @@ public class Unit : MonoBehaviour
             period = 0;
             attacking[0].GetComponent<Unit>().receiveDamage(atk);
             en = Math.Min(en+25, 100);
-            Instantiate(strike, transform.position + 0.8f*transform.right, transform.rotation);
+            GameObject s = Instantiate(strike, transform.position + 0.8f*transform.right, transform.rotation);
+            s.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
         }
         period += Time.deltaTime;
     }

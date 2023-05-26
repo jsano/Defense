@@ -10,6 +10,7 @@ public class BarContainer : MonoBehaviour
     public GameObject hpBar;
     public GameObject enBar;
     Transform parent;
+    private int layer = 0;
 
     void Awake()
     {
@@ -17,7 +18,7 @@ public class BarContainer : MonoBehaviour
         transform.localPosition = new Vector3(0, 0.935f, 0);
         transform.localScale = new Vector3(barLength + 0.02f, 2*barWidth+0.05f, 0);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
-        GetComponent<SpriteRenderer>().sortingOrder = 0;
+        GetComponent<SpriteRenderer>().sortingOrder = layer;
         makeBar(hpBar, "HP", 1);
         makeBar(enBar, "EN", 0.87f);
     }
@@ -36,7 +37,7 @@ public class BarContainer : MonoBehaviour
             bar.GetComponent<SpriteRenderer>().color = Color.magenta;
         }
         pivot.transform.localScale = new Vector3(0, barWidth, 0);
-        bar.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        bar.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
     }
 
     // Update is called once per frame
