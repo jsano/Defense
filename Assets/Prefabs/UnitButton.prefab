@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 2960681838446400357}
   - component: {fileID: 4407658644709299282}
   - component: {fileID: 6574285577725737631}
-  - component: {fileID: 4913052140194252663}
+  - component: {fileID: -2197254443615343726}
   m_Layer: 5
   m_Name: UnitButton
   m_TagString: Untagged
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4913052140194252663
+--- !u!114 &-2197254443615343726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
