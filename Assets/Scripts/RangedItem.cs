@@ -33,7 +33,6 @@ public class RangedItem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Here");
         if (tag == "AllyP" && other.tag == "Enemy" || tag == "EnemyP" && other.tag == "Ally") {
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
