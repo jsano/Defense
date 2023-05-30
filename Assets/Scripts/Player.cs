@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void generate()
     {
-        money += 10;
+        money += 5;
     }
     
 }

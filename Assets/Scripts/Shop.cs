@@ -23,7 +23,8 @@ public class Shop : MonoBehaviour
 
     public void purchase(int i)
     {
-        Debug.Log("Bought unit " + i);
+        GameObject a = Instantiate(srcPrefabs[i]);
+        a.transform.position = new Vector3(-12, -3, 0);
     }
 
 }

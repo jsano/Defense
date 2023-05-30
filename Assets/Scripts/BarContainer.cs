@@ -7,8 +7,7 @@ public class BarContainer : MonoBehaviour
 
     private float barLength = 1;
     private float barWidth = 0.1f;
-    public GameObject hpBar;
-    public GameObject enBar;
+    public GameObject _bar;
     Transform parent;
     private int layer = 0;
 
@@ -16,14 +15,15 @@ public class BarContainer : MonoBehaviour
     {
         parent = transform.parent;
         transform.localPosition = new Vector3(0, 0.935f, 0);
-        transform.localScale = new Vector3(barLength + 0.02f, 2*barWidth+0.05f, 0);
+        if (parent.GetComponent<Unit>() == null)
+            transform.localScale = new Vector3(barLength + 0.02f, barWidth+0.05f, 0);
+        else 
+            transform.localScale = new Vector3(barLength + 0.02f, 2*barWidth+0.05f, 0);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.4f);
         GetComponent<SpriteRenderer>().sortingOrder = layer;
-        makeBar(hpBar, "HP", 1);
-        makeBar(enBar, "EN", 0.87f);
     }
 
-    private void makeBar(GameObject _bar, string name, float height)
+    public void makeBar(string name, float height)
     {
         //Pivot controls and is the anchor for scaling
         GameObject pivot = new GameObject();
@@ -45,7 +45,11 @@ public class BarContainer : MonoBehaviour
     {
         Transform bar = parent.Find("HPPivot");
         Unit g = parent.GetComponent<Unit>();
-        bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.maxHp), barWidth, 0);
+        if (g == null) {
+            Castle g1 = parent.GetComponent<Castle>();
+            bar.localScale = new Vector3(barLength * (g1.getCurrentHP()/g1.maxHp), barWidth, 0);
+            return;
+        } else bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.maxHp), barWidth, 0);
         
         Transform bar1 = parent.Find("ENPivot");
         bar1.localScale = new Vector3(barLength * (g.getCurrentEn()/100.0f), barWidth, 0);

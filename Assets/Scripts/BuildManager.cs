@@ -17,12 +17,11 @@ public class BuildManager : MonoBehaviour
     }
 
     private Transform gold; // grandchild text gameobject
-    private GameObject selectedUnit;
 
     // Start is called before the first frame update
     void Start()
     {
-        gold = transform.Find("GoldImage");//.Find("Gold");
+        gold = transform.Find("GoldImage");
         GameObject g = new GameObject();
         g.transform.SetParent(gold, false);
         g.layer = 5;
