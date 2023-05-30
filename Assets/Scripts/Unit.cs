@@ -78,7 +78,6 @@ public class Unit : MonoBehaviour
     {
         if (attacking == null) return;
         attacking.GetComponent<Unit>().receiveDamage(atk);
-        Debug.Log(tag + " " + attacking.tag);
         en = Math.Min(en+25, 100);
         GameObject s;
         if (ranged) {
