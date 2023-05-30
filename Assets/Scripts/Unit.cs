@@ -78,16 +78,20 @@ public class Unit : MonoBehaviour
     private void Attack()
     {
         if (attacking == null) return;
-        if (attacking.GetComponent<Unit>() == null) attacking.GetComponent<Castle>().receiveDamage(atk);
-        else attacking.GetComponent<Unit>().receiveDamage(atk);
         en = Math.Min(en+25, 100);
         GameObject s;
         if (ranged) {
-            s = Instantiate(rangedItem, transform.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, transform.eulerAngles.y, -90));
+            int direction = (tag == "Ally") ? 1 : -1;
+            s = Instantiate(rangedItem, transform.position + new Vector3(direction * 0.5f, 0, 0), Quaternion.Euler(0, transform.eulerAngles.y, -90));
             s.GetComponent<RangedItem>().attacking = attacking;
+            s.GetComponent<RangedItem>().dmg = atk;
             s.tag = tag + "P";
         }
-        else s = Instantiate(strike, attacking.transform.position, transform.rotation);
+        else {
+            s = Instantiate(strike, attacking.transform.position, transform.rotation);
+            if (attacking.GetComponent<Unit>() == null) attacking.GetComponent<Castle>().receiveDamage(atk);
+            else attacking.GetComponent<Unit>().receiveDamage(atk);
+        }
         s.GetComponent<SpriteRenderer>().sortingOrder = attacking.layer + 1;
     }
 

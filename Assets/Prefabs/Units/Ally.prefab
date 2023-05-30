@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 100
   speed: 0
-  maxHp: 0
+  maxHp: 10
   atk: 0
   atkspd: 1
   range: 1
