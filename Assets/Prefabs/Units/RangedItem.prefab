@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacking: {fileID: 0}
-  speed: 3
+  speed: 5
   dissolve: {fileID: 2160491987593758681, guid: ad3d80d7c3195cc45891d3b991dedf7e, type: 3}
+  dmg: 0
 --- !u!50 &-944269882675068320
 Rigidbody2D:
   serializedVersion: 4

@@ -31,14 +31,13 @@ public class Unit : MonoBehaviour
     public GameObject dissolve;
     private int layer;
 
-    void Awake()
+    void Start()
     {
         layer = GetComponent<SpriteRenderer>().sortingOrder;
         hp = maxHp;
         period = atkspd/2;
         BarContainer bc = Instantiate(barContainer, transform, false).GetComponent<BarContainer>();
-        bc.makeBar("HP", 1);
-        bc.makeBar("EN", 0.87f);
+        if (speed == 0) bc.forCastle = true;
         if (tag == "Enemy") dest = new Vector3(-10, transform.position.y, 0); 
         else dest = new Vector3(10, transform.position.y, 0);
     }
@@ -89,8 +88,7 @@ public class Unit : MonoBehaviour
         }
         else {
             s = Instantiate(strike, attacking.transform.position, transform.rotation);
-            if (attacking.GetComponent<Unit>() == null) attacking.GetComponent<Castle>().receiveDamage(atk);
-            else attacking.GetComponent<Unit>().receiveDamage(atk);
+            attacking.GetComponent<Unit>().receiveDamage(atk);
         }
         s.GetComponent<SpriteRenderer>().sortingOrder = attacking.layer + 1;
     }

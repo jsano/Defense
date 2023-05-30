@@ -35,9 +35,7 @@ public class RangedItem : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (tag == "AllyP" && other.tag == "Enemy" || tag == "EnemyP" && other.tag == "Ally") {
-            Unit t = other.GetComponent<Unit>();
-            if (t == null) other.GetComponent<Castle>().receiveDamage(dmg);
-            else t.receiveDamage(dmg);
+            other.GetComponent<Unit>().receiveDamage(dmg);
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
             p.startColor = GetComponent<SpriteRenderer>().color;

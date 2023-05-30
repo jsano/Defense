@@ -10,17 +10,24 @@ public class BarContainer : MonoBehaviour
     public GameObject _bar;
     Transform parent;
     private int layer = 0;
+    public bool forCastle = false;
 
-    void Awake()
+    void Start()
     {
         parent = transform.parent;
         transform.localPosition = new Vector3(0, 0.935f, 0);
-        if (parent.GetComponent<Unit>() == null)
+        if (forCastle)
             transform.localScale = new Vector3(barLength + 0.02f, barWidth+0.05f, 0);
         else 
             transform.localScale = new Vector3(barLength + 0.02f, 2*barWidth+0.05f, 0);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.4f);
         GetComponent<SpriteRenderer>().sortingOrder = layer;
+        if (forCastle) {
+            makeBar("HP", 0.935f);
+        } else {
+            makeBar("HP", 1);
+            makeBar("EN", 0.87f);
+        }
     }
 
     public void makeBar(string name, float height)
@@ -45,12 +52,8 @@ public class BarContainer : MonoBehaviour
     {
         Transform bar = parent.Find("HPPivot");
         Unit g = parent.GetComponent<Unit>();
-        if (g == null) {
-            Castle g1 = parent.GetComponent<Castle>();
-            bar.localScale = new Vector3(barLength * (g1.getCurrentHP()/g1.maxHp), barWidth, 0);
-            return;
-        } else bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.maxHp), barWidth, 0);
-        
+        bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.maxHp), barWidth, 0);
+        if (forCastle) return;
         Transform bar1 = parent.Find("ENPivot");
         bar1.localScale = new Vector3(barLength * (g.getCurrentEn()/100.0f), barWidth, 0);
     }
