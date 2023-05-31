@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 0
-  speed: 0
-  maxHp: 10
-  atk: 0
-  atkspd: 1
+  speed: 1
+  baseHp: 10
+  baseAtk: 1
+  atkMods: []
+  baseAtkspd: 1
+  atkspdMods: []
   range: 1
   barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
   strike: {fileID: 6596463402659811758, guid: 0cb85dd52b9d67a42bc29e9119c4ba73, type: 3}

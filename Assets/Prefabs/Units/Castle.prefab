@@ -126,9 +126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 0
   speed: 0
-  maxHp: 50
-  atk: 5
-  atkspd: 1
+  baseHp: 50
+  baseAtk: 1
+  atkMods: []
+  baseAtkspd: 1
+  atkspdMods: []
   range: 4
   barContainer: {fileID: 2729172421113562692, guid: 7ce24e8efd699e143991274f4f2d2164, type: 3}
   strike: {fileID: 0}

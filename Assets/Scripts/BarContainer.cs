@@ -52,7 +52,7 @@ public class BarContainer : MonoBehaviour
     {
         Transform bar = parent.Find("HPPivot");
         Unit g = parent.GetComponent<Unit>();
-        bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.maxHp), barWidth, 0);
+        bar.localScale = new Vector3(barLength * (g.getCurrentHP()/g.getCombatMaxHP()), barWidth, 0);
         if (forCastle) return;
         Transform bar1 = parent.Find("ENPivot");
         bar1.localScale = new Vector3(barLength * (g.getCurrentEn()/100.0f), barWidth, 0);

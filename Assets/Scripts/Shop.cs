@@ -24,7 +24,7 @@ public class Shop : MonoBehaviour
     public void purchase(int i)
     {
         GameObject a = Instantiate(srcPrefabs[i]);
-        a.transform.position = new Vector3(-12, -3, 0);
+        a.transform.position = new Vector3(Constants.ALLYX, Constants.GROUNDY, 0);
         Player.money -= srcPrefabs[i].GetComponent<Unit>().cost;
     }
 

@@ -22,7 +22,7 @@ public class WaveSpawner : MonoBehaviour
     void spawn()
     {
         GameObject e = Instantiate(srcPrefabs[0]);
-        e.transform.position = new Vector3(12, -3, 0);
+        e.transform.position = new Vector3(Constants.ENEMYX, Constants.GROUNDY, 0);
     }
 
 }
