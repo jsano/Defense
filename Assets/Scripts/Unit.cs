@@ -10,26 +10,27 @@ public class Unit : MonoBehaviour
     private GameObject attacking; // First is current target
 
     [Header("Info")]
-    public int cost;
+    [SerializeField] private int cost;
+    [SerializeField] private int upgradeCost;
     public int ID = 0;
 
     [Header("Stats")]
-    public float speed;
-    public float baseHp;
+    [SerializeField] private float speed;
+    [SerializeField] private float baseHp;
     private float hp;
     private float en = 0;
-    public float baseAtk;
+    [SerializeField] private float baseAtk;
     public List<string> atkMods = new List<string>();
-    public float baseAtkspd;
+    [SerializeField] private float baseAtkspd;
     public List<string> atkspdMods = new List<string>();
     private float period;
-    public float range = 0.75f;
+    [SerializeField] private float range = 0.75f;
 
     [Header("Graphics")]
     public GameObject barContainer;
     public GameObject strike; 
     public GameObject rangedItem;
-    public bool ranged;
+    [SerializeField] private bool ranged;
     public GameObject dissolve;
     private int layer;
 
@@ -115,9 +116,9 @@ public class Unit : MonoBehaviour
         else attacking = null;
     }
 
-    void onMouseDown()
+    void OnMouseDown()
     {
-        Debug.Log("Show info");
+        Debug.Log("Stats " + getCombatAtk() + " " + getCombatMaxHP());
     }
 
     public void receiveDamage(float dmg) 
@@ -179,7 +180,7 @@ public class Unit : MonoBehaviour
 
     public int getUpgradeCost()
     {
-        return (int) (100 * Constants.ratios[getCurrentLv()]);
+        return (int) (upgradeCost * Constants.ratios[getCurrentLv()]);
     }
 
 }

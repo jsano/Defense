@@ -27,8 +27,7 @@ public class LvUpButton : MonoBehaviour
                 t.levelUpHp();
             }
         }
-        Player.money -= (int) (100*Constants.ratios[Player.levels[ID]]);
-        Debug.Log("upgraded " + ID);
+        Player.money -= (int) (src.GetComponent<Unit>().getUpgradeCost());
         Player.levels[ID] += 1;
     }
 

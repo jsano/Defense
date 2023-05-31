@@ -28,11 +28,4 @@ public class Shop : MonoBehaviour
         b1.ID = i;
     }
 
-    public void purchase(int i)
-    {
-        GameObject a = Instantiate(srcPrefabs[i]);
-        a.transform.position = new Vector3(Constants.ALLYX, Constants.GROUNDY, 0);
-        Player.money -= srcPrefabs[i].GetComponent<Unit>().cost;
-    }
-
 }

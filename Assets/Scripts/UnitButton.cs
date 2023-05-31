@@ -21,7 +21,6 @@ public class UnitButton : MonoBehaviour
 
     void clicked()
     {
-        //GetComponentInParent<Shop>().purchase(ID);
         GameObject a = Instantiate(src);
         a.transform.position = new Vector3(Constants.ALLYX, Constants.GROUNDY, 0);
         Player.money -= src.GetComponent<Unit>().getCombatCost();
