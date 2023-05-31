@@ -8,11 +8,10 @@ public class Unit : MonoBehaviour
 
     private bool toDestroy = false;
     private GameObject attacking; // First is current target
-    private float[] ratios = {0, 1, 1.5f, 2.5f, 4, 6, 8.5f, 12};
 
     [Header("Info")]
     public int cost;
-    private int level = 1;
+    public int ID = 0;
 
     [Header("Stats")]
     public float speed;
@@ -50,8 +49,7 @@ public class Unit : MonoBehaviour
             toDestroy = true;
             return;
         }
-        hp = Math.Min(hp, baseHp * ratios[level]);
-        Debug.Log(baseHp * ratios[level]);
+        hp = Math.Min(hp, getCombatMaxHP());
         if (attacking == null) StartCoroutine(FindTarget());
         if (attacking == null) {
             period = getCombatAtkspd() / 2;
@@ -128,10 +126,9 @@ public class Unit : MonoBehaviour
         en = Math.Min(en+1, 100);
     }
 
-    public void levelUp()
+    public void levelUpHp()
     {
-        level += 1;
-        float toGain = baseHp * (ratios[level] - ratios[level-1]);
+        float toGain = baseHp * (Constants.ratios[getCurrentLv()] - Constants.ratios[getCurrentLv()-1]);
         hp += toGain;
     }
     
@@ -142,7 +139,7 @@ public class Unit : MonoBehaviour
 
     public float getCombatMaxHP()
     {
-        return baseHp * ratios[level];
+        return baseHp * Constants.ratios[getCurrentLv()];
     }
 
     public float getCurrentEn()
@@ -152,7 +149,7 @@ public class Unit : MonoBehaviour
 
     public float getCombatAtk()
     {
-        float cur = baseAtk * ratios[level];
+        float cur = baseAtk * Constants.ratios[getCurrentLv()];
         foreach (string s in atkMods){
             if (s.StartsWith("+")) cur += float.Parse(s.Substring(1));
             else cur *= float.Parse(s.Substring(1));
@@ -162,7 +159,7 @@ public class Unit : MonoBehaviour
 
     public float getCombatAtkspd()
     {
-        float cur = baseAtkspd * ratios[level];
+        float cur = baseAtkspd * Constants.ratios[getCurrentLv()];
         foreach (string s in atkspdMods){
             if (s.StartsWith("+")) cur += float.Parse(s.Substring(1));
             else cur *= float.Parse(s.Substring(1));
@@ -172,7 +169,17 @@ public class Unit : MonoBehaviour
 
     public int getCurrentLv()
     {
-        return level;
+        return Player.levels[ID];
+    }
+
+    public int getCombatCost()
+    {
+        return (int) (cost * Constants.ratios[getCurrentLv()]);
+    }
+
+    public int getUpgradeCost()
+    {
+        return (int) (100 * Constants.ratios[getCurrentLv()]);
     }
 
 }

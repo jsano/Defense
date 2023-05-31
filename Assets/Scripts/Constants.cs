@@ -15,4 +15,6 @@ public class Constants : MonoBehaviour
 
     readonly static public float ENEMYX = 12;
 
+    readonly static public float[] ratios = {0, 1, 1.5f, 2.5f, 4, 6, 8.5f, 12};
+
 }

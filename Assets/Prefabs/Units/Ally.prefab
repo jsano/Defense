@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 100
+  ID: 0
   speed: 1
   baseHp: 10
   baseAtk: 1
