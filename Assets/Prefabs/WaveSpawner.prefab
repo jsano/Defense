@@ -48,3 +48,4 @@ MonoBehaviour:
   - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
   - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
   - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
+  castle: {fileID: 2559408036020805399, guid: 585c9e110209458428f0c528ed79d7f0, type: 3}

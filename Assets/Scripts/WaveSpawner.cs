@@ -6,10 +6,12 @@ public class WaveSpawner : MonoBehaviour
 {
 
     public GameObject[] srcPrefabs;
+    public GameObject castle;
 
     // Start is called before the first frame update
     void Start()
     {
+        Instantiate(castle, Constants.CASTLEPOS, Quaternion.identity);
         InvokeRepeating("spawn", 0.5f, 3);
     }
 
