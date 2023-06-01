@@ -147,7 +147,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     void updateUI() {
         currentUI.transform.Find("Atk").GetComponent<Text>().text = getCombatAtk() + "";
-        currentUI.transform.Find("HP").GetComponent<Text>().text = getCurrentHP() + "";
+        currentUI.transform.Find("HP").GetComponent<Text>().text = getCurrentHP() + " / " + getCombatMaxHP();
         currentUI.transform.Find("Atkspd").GetComponent<Text>().text = getCombatAtkspd() + "";
         currentUI.transform.Find("Speed").GetComponent<Text>().text = getCombatSpeed() + "";
         currentRI.transform.localScale = new Vector3(range*2, range*2, 0);
@@ -182,7 +182,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public float getCombatSpeed()
     {
-        float cur = speed * Constants.ratios[getCurrentLv()];
+        float cur = speed;
         foreach (string s in speedMods){
             if (s.StartsWith("+") && speed > 0) cur += float.Parse(s.Substring(1));
             else cur *= float.Parse(s.Substring(1));
@@ -202,7 +202,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public float getCombatAtkspd()
     {
-        float cur = baseAtkspd * Constants.ratios[getCurrentLv()];
+        float cur = baseAtkspd;
         foreach (string s in atkspdMods){
             if (s.StartsWith("+")) cur += float.Parse(s.Substring(1));
             else cur *= float.Parse(s.Substring(1));

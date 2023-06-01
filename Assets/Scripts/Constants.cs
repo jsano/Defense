@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Constants : MonoBehaviour
 {
+
+    readonly static public float MAXCAMERAX = 30;
     
     readonly static public float GROUNDY = -2.5f;
 
