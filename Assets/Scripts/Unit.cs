@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
 
     private bool toDestroy = false;
@@ -16,6 +18,7 @@ public class Unit : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float speed;
+    public List<string> speedMods = new List<string>();
     [SerializeField] private float baseHp;
     private float hp;
     private float en = 0;
@@ -32,6 +35,11 @@ public class Unit : MonoBehaviour
     public GameObject rangedItem;
     [SerializeField] private bool ranged;
     public GameObject dissolve;
+    public GameObject unitInfo;
+    private GameObject currentUI;
+    public GameObject rangeInfo;
+    private GameObject currentRI;
+    private bool displaying = false;
     private int layer;
 
     void Start()
@@ -50,6 +58,7 @@ public class Unit : MonoBehaviour
             toDestroy = true;
             return;
         }
+        if (displaying) updateUI();
         hp = Math.Min(hp, getCombatMaxHP());
         if (attacking == null) StartCoroutine(FindTarget());
         if (attacking == null) {
@@ -116,9 +125,32 @@ public class Unit : MonoBehaviour
         else attacking = null;
     }
 
-    void OnMouseDown()
+    public void OnSelect(BaseEventData baseEventData)
     {
         Debug.Log("Stats " + getCombatAtk() + " " + getCombatMaxHP());
+        currentUI = Instantiate(unitInfo, transform, false);
+        currentRI = Instantiate(rangeInfo, transform, false);
+        currentRI.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
+        displaying = true;
+        SpriteRenderer s = GetComponent<SpriteRenderer>();
+        s.color = new Color(s.color.r + 0.5f, s.color.g + 0.5f, s.color.b - 0f);
+    }
+
+    public void OnDeselect(BaseEventData baseEventData)
+    {
+        if (currentUI != null) Destroy(currentUI);
+        if (currentRI != null) Destroy(currentRI);
+        displaying = false;
+        SpriteRenderer s = GetComponent<SpriteRenderer>();
+        s.color = new Color(s.color.r - 0.5f, s.color.g - 0.5f, s.color.b + 0f);
+    }
+
+    void updateUI() {
+        currentUI.transform.Find("Atk").GetComponent<Text>().text = getCombatAtk() + "";
+        currentUI.transform.Find("HP").GetComponent<Text>().text = getCurrentHP() + "";
+        currentUI.transform.Find("Atkspd").GetComponent<Text>().text = getCombatAtkspd() + "";
+        currentUI.transform.Find("Speed").GetComponent<Text>().text = getCombatSpeed() + "";
+        currentRI.transform.localScale = new Vector3(range*2, range*2, 0);
     }
 
     public void receiveDamage(float dmg) 
@@ -129,7 +161,7 @@ public class Unit : MonoBehaviour
 
     public void levelUpHp()
     {
-        float toGain = baseHp * (Constants.ratios[getCurrentLv()] - Constants.ratios[getCurrentLv()-1]);
+        float toGain = baseHp * (Constants.ratios[getCurrentLv()+1] - Constants.ratios[getCurrentLv()]);
         hp += toGain;
     }
     
@@ -146,6 +178,16 @@ public class Unit : MonoBehaviour
     public float getCurrentEn()
     {
         return en;
+    }
+
+    public float getCombatSpeed()
+    {
+        float cur = speed * Constants.ratios[getCurrentLv()];
+        foreach (string s in speedMods){
+            if (s.StartsWith("+") && speed > 0) cur += float.Parse(s.Substring(1));
+            else cur *= float.Parse(s.Substring(1));
+        }
+        return cur;
     }
 
     public float getCombatAtk()

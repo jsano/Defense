@@ -5,7 +5,7 @@ using UnityEngine;
 public class Constants : MonoBehaviour
 {
     
-    readonly static public float GROUNDY = -3;
+    readonly static public float GROUNDY = -2.5f;
 
     readonly static public float AIRY = 0;
 

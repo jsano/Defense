@@ -23,7 +23,7 @@ public class LvUpButton : MonoBehaviour
     {
         Unit[] targets = GameObject.FindObjectsOfType<Unit>();
         foreach (Unit t in targets) {
-            if (t.ID == ID) {
+            if (t.ID == ID && t.getCombatSpeed() > 0) {
                 t.levelUpHp();
             }
         }
