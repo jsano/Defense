@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < Player.owned; i++) addButton(i);
+        for (int i = 1; i <= Player.owned; i++) addButton(i);
     }
 
     private void addButton(int i)

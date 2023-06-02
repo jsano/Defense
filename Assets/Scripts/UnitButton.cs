@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UnitButton : MonoBehaviour
 {
 
-    public GameObject src;
-    public int ID;
+    [HideInInspector] public GameObject src;
+    [HideInInspector] public int ID;
     private Button b;
     private Transform cost;
 

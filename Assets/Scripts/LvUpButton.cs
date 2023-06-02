@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class LvUpButton : MonoBehaviour
 {
-    public GameObject src;
-    public int ID;
+    
+    [HideInInspector] public GameObject src;
+    [HideInInspector] public int ID;
     private Button b;
-    Transform cost;
+    private Transform cost;
 
     void Start()
     {

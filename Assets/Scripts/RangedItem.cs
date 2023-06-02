@@ -5,17 +5,18 @@ using UnityEngine;
 public class RangedItem : MonoBehaviour
 {
 
-    public GameObject attacking;
+    [HideInInspector] public GameObject attacking;
     public float speed;
     private float lifetime = 1;
-    private float period;
+    private float period = 0;
     public GameObject dissolve;
-    public float dmg;
+    [HideInInspector] public float dmg;
+    private int layer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        layer = attacking.GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 
     // Update is called once per frame
@@ -39,7 +40,7 @@ public class RangedItem : MonoBehaviour
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
             p.startColor = GetComponent<SpriteRenderer>().color;
-            p0.GetComponent<ParticleSystemRenderer>().sortingOrder = attacking.layer + 1;
+            p0.GetComponent<ParticleSystemRenderer>().sortingOrder = layer;
             Destroy(gameObject);
         }
     }

@@ -10,7 +10,7 @@ public class BarContainer : MonoBehaviour
     public GameObject _bar;
     Transform parent;
     private int layer = 0;
-    public bool forCastle = false;
+    [HideInInspector] public bool forCastle = false;
 
     void Start()
     {

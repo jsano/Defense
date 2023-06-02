@@ -12,7 +12,7 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
         Instantiate(castle, Constants.CASTLEPOS, Quaternion.identity);
-        InvokeRepeating("spawn", 0.5f, 3);
+        InvokeRepeating("spawn", 0.5f, 5);
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class WaveSpawner : MonoBehaviour
 
     void spawn()
     {
-        GameObject e = Instantiate(srcPrefabs[0]);
+        GameObject e = Instantiate(srcPrefabs[1]);
         e.transform.position = new Vector3(Constants.ENEMYX, Constants.GROUNDY, 0);
     }
 

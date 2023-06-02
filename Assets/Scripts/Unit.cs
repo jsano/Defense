@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     [Header("Info")]
     [SerializeField] private int cost;
     [SerializeField] private int upgradeCost;
-    public int ID = 0;
+    public int ID;
 
     [Header("Stats")]
     [SerializeField] private float speed;
@@ -41,6 +41,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     private GameObject currentRI;
     private bool displaying = false;
     private int layer;
+    private Color baseColor;
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
         period = baseAtkspd/2;
         BarContainer bc = Instantiate(barContainer, transform, false).GetComponent<BarContainer>();
         if (speed == 0) bc.forCastle = true;
+        baseColor = GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -63,7 +65,8 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
         if (attacking == null) StartCoroutine(FindTarget());
         if (attacking == null) {
             period = getCombatAtkspd() / 2;
-            transform.position += transform.right*speed*Time.deltaTime;
+            if (tag == "Enemy" || tag == "Ally" && transform.position.x < Constants.ENEMYX - 10)
+                transform.position += transform.right*speed*Time.deltaTime;
         } else {
             if (period > getCombatAtkspd()) {
                 period = 0;
@@ -79,7 +82,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
         if (toDestroy) {
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
-            p.startColor = GetComponent<SpriteRenderer>().color;
+            p.startColor = baseColor;
             Destroy(gameObject);
         }
     }
@@ -127,7 +130,6 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnSelect(BaseEventData baseEventData)
     {
-        Debug.Log("Stats " + getCombatAtk() + " " + getCombatMaxHP());
         currentUI = Instantiate(unitInfo, transform, false);
         currentRI = Instantiate(rangeInfo, transform, false);
         currentRI.GetComponent<SpriteRenderer>().sortingOrder = layer + 1;
