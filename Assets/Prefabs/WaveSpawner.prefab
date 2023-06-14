@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   srcPrefabs:
   - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-  - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-  - {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
+  - {fileID: 3865395909755782414, guid: 59720d48b9753f14a82dd31f7c15dd04, type: 3}
+  - {fileID: 4129927609458226776, guid: f872e64e09246d44497896b8df3c769b, type: 3}
   castle: {fileID: 2559408036020805399, guid: 585c9e110209458428f0c528ed79d7f0, type: 3}

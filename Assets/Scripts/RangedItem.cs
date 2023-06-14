@@ -12,24 +12,23 @@ public class RangedItem : MonoBehaviour
     public GameObject dissolve;
     [HideInInspector] public float dmg;
     private int layer;
+    private Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
     {
         layer = attacking.GetComponent<SpriteRenderer>().sortingOrder + 1;
+        if (attacking == null) {
+            if (tag == "EnemyP") dir = new Vector3(-1, 0, 0); 
+            else dir = new Vector3(1, 0, 0);
+        } else dir = (attacking.transform.position - transform.position).normalized;
     }
 
     // Update is called once per frame
     void Update()
     {
         period += Time.deltaTime;
-        if (period >= lifetime) Destroy(gameObject);
-        Vector3 dir;
-        if (attacking == null) {
-            if (tag == "EnemyP") dir = new Vector3(-1, 0, 0); 
-            else dir = new Vector3(1, 0, 0);
-        }
-        else dir = (attacking.transform.position - transform.position).normalized;
+        if (period >= lifetime) Destroy(gameObject);        
         transform.position += dir * speed * Time.deltaTime;
     }
 

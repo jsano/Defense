@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
 
     public GameObject[] srcPrefabs;
     public GameObject castle;
+    private int idx = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,9 @@ public class WaveSpawner : MonoBehaviour
 
     void spawn()
     {
-        GameObject e = Instantiate(srcPrefabs[1]);
+        GameObject e = Instantiate(srcPrefabs[idx]);
         e.transform.position = new Vector3(Constants.ENEMYX, Constants.GROUNDY, 0);
+        idx = idx ^ 3;
     }
 
 }

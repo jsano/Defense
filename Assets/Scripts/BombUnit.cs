@@ -5,35 +5,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class BombUnit : Unit, ISelectHandler, IDeselectHandler
 {
 
-    private bool toDestroy = false;
-    protected GameObject attacking; // First is current target
+    /*private bool toDestroy = false;
+    private GameObject attacking; // First is current target
 
     [Header("Info")]
-    [SerializeField] protected int cost;
-    [SerializeField] protected int upgradeCost;
+    [SerializeField] private int cost;
+    [SerializeField] private int upgradeCost;
     public int ID;
 
     [Header("Stats")]
-    [SerializeField] protected float speed;
+    [SerializeField] private float speed;
     public List<string> speedMods = new List<string>();
-    [SerializeField] protected float baseHp;
+    [SerializeField] private float baseHp;
     private float hp;
     private float en = 0;
-    [SerializeField] protected float baseAtk;
+    [SerializeField] private float baseAtk;
     public List<string> atkMods = new List<string>();
-    [SerializeField] protected float baseAtkspd;
+    [SerializeField] private float baseAtkspd;
     public List<string> atkspdMods = new List<string>();
     private float period;
-    [SerializeField] protected float range;
+    [SerializeField] private float range = 0.75f;
 
     [Header("Graphics")]
     public GameObject barContainer;
     public GameObject strike; 
     public GameObject rangedItem;
-    [SerializeField] protected bool ranged;
+    [SerializeField] private bool ranged;
     public GameObject dissolve;
     public GameObject unitInfo;
     private GameObject currentUI;
@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
         }
         if (displaying) updateUI();
         hp = Math.Min(hp, getCombatMaxHP());
-        StartCoroutine(FindTarget());
+        if (attacking == null) StartCoroutine(FindTarget());
         if (attacking == null) {
             period = getCombatAtkspd() / 2;
             if (tag == "Enemy" || tag == "Ally" && transform.position.x < Constants.ENEMYX - 10)
@@ -104,31 +104,24 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
             attacking.GetComponent<Unit>().receiveDamage(getCombatAtk());
         }
         s.GetComponent<SpriteRenderer>().sortingOrder = attacking.layer + 1;
-    }
+    }*/
 
-    protected virtual IEnumerator FindTarget()
+    protected override IEnumerator FindTarget()
     {
         GameObject[] targets;
         if (tag == "Ally") targets = GameObject.FindGameObjectsWithTag("Enemy");
         else targets = GameObject.FindGameObjectsWithTag("Ally");
-        float min = Mathf.Infinity;
-        GameObject nearest = null;
         foreach (GameObject t in targets) {
-            float dist = Math.Abs(transform.position.x - t.transform.position.x);
-            if (dist < min) {
-                min = dist;
-                nearest = t;
+            if (t.GetComponent<Unit>().getCombatSpeed() == 0 && Math.Abs(transform.position.x - t.transform.position.x) <= range) {
+                // Enemy will start attacking 1 frame later than ally for QOL
+                if (tag == "Enemy") yield return new WaitForSeconds(Time.deltaTime);
+                attacking = t;
+                break;
             }
         }
-        if (nearest != null && min <= range) {
-            // Enemy will start attacking 1 frame later than ally for QOL
-            if (tag == "Enemy") yield return new WaitForSeconds(Time.deltaTime);
-            attacking = nearest;
-        }
-        else attacking = null;
     }
 
-    public void OnSelect(BaseEventData baseEventData)
+    /*public void OnSelect(BaseEventData baseEventData)
     {
         currentUI = Instantiate(unitInfo, transform, false);
         currentRI = Instantiate(rangeInfo, transform, false);
@@ -225,6 +218,6 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     public int getUpgradeCost()
     {
         return (int) (upgradeCost * Constants.ratios[getCurrentLv()]);
-    }
+    }*/
 
 }

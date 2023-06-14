@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -291,10 +291,6 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: atkspd
       value: 1
       objectReference: {fileID: 0}
@@ -303,16 +299,8 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-      propertyPath: ranged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: baseAtk
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-      propertyPath: baseAtkspd
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: m_Name
@@ -390,10 +378,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: atkspd
       value: 0.5
       objectReference: {fileID: 0}
@@ -408,10 +392,6 @@ PrefabInstance:
     - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: baseAtk
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28105261964800716, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
-      propertyPath: baseAtkspd
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: m_Name
@@ -589,6 +569,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 610812463, guid: 6802de090fac316429d9265ed08b6107, type: 3}
+      propertyPath: s
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8605124356634944626, guid: 6802de090fac316429d9265ed08b6107, type: 3}
       propertyPath: m_Pivot.x
       value: 0

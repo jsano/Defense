@@ -122,19 +122,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 925302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 925304}
-        m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
-        m_MethodName: moveRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &925304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,19 +537,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 856234538}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 856234540}
-        m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
-        m_MethodName: moveLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &856234540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,10 +750,10 @@ MonoBehaviour:
   button: {fileID: 2756658531811680445, guid: 778e591fe0e3edb4d8591a6affdac75e, type: 3}
   srcPrefabs:
   - {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
-  - {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
-  - {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
-  - {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
-  - {fileID: 3833902013386426071, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
+  - {fileID: 253703848164034592, guid: d83d6d448967ea74b84a2bf4a29acad7, type: 3}
+  - {fileID: 6260113927991922977, guid: 589cd9a3da04b0f4c9f2de34d90670c8, type: 3}
+  - {fileID: 6134754831117330743, guid: ca56468746fae80488f4407ee41f1f69, type: 3}
+  - {fileID: 290412481976951602, guid: ad12ee5f07a6024478f0bfef2f3da3f6, type: 3}
 --- !u!1 &8605124356634944630
 GameObject:
   m_ObjectHideFlags: 0
