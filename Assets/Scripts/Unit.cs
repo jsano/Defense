@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private bool toDestroy = false;
     protected GameObject attacking; // First is current target
+    public int enemyLevel; // Only for enemy use
 
     [Header("Info")]
     [SerializeField] protected int cost;
@@ -42,8 +43,9 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     private int layer;
     private Color baseColor;
 
-    void Start()
+    void Awake()
     {
+        enemyLevel = 1;
         layer = GetComponent<SpriteRenderer>().sortingOrder;
         hp = baseHp;
         period = baseAtkspd/2;
@@ -163,7 +165,9 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void levelUpHp()
     {
         float toGain = baseHp * (Constants.ratios[getCurrentLv()+1] - Constants.ratios[getCurrentLv()]);
+        Debug.Log((enemyLevel) + " " + hp);
         hp += toGain;
+        Debug.Log((enemyLevel+1) + " " + hp);
     }
     
     public float getCurrentHP()
@@ -213,7 +217,8 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public int getCurrentLv()
     {
-        return Player.levels[ID];
+        if (tag == "Ally") return Player.levels[ID];
+        else return enemyLevel;
     }
 
     public int getCombatCost()
