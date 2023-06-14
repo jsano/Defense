@@ -8,6 +8,8 @@ public class BarContainer : MonoBehaviour
     private float barLength = 1;
     private float barWidth = 0.1f;
     public GameObject _bar;
+    public GameObject star;
+    private int curLevel;
     Transform parent;
     private int layer = 0;
     [HideInInspector] public bool forCastle = false;
@@ -56,5 +58,13 @@ public class BarContainer : MonoBehaviour
         if (forCastle) return;
         Transform bar1 = parent.Find("ENPivot");
         bar1.localScale = new Vector3(barLength * (g.getCurrentEn()/100.0f), barWidth, 0);
+        int temp = parent.GetComponent<Unit>().getCurrentLv();
+        if (curLevel != temp) {
+            for (int i = 0; i < temp - curLevel; i++) {
+                GameObject s = Instantiate(star);
+                s.transform.SetParent(transform.Find("Canvas"), false);
+            }
+            curLevel = temp;
+        }
     }
 }

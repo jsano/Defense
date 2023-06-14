@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public static int eowned = 3; //TEMP, not including template
     public static int[] levels = new int[owned + 1];
 
-    // Start is called before the first frame update
     void Awake()
     {
         money = startMoney;
