@@ -82,7 +82,7 @@ MonoBehaviour:
   cost: 0
   upgradeCost: 0
   ID: 0
-  speed: 7
+  speed: 2
   speedMods: []
   baseHp: 20
   baseAtk: 10

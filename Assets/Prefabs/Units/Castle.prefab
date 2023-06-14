@@ -131,7 +131,7 @@ MonoBehaviour:
   speed: 0
   speedMods: []
   baseHp: 50
-  baseAtk: 1
+  baseAtk: 5
   atkMods: []
   baseAtkspd: 1
   atkspdMods: []

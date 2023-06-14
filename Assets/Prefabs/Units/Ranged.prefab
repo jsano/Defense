@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1168805458894257156, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
       propertyPath: range
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1168805458894257156, guid: f3f938a6b47114448845cfb9d4b13849, type: 3}
       propertyPath: baseHp

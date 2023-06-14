@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -61,7 +60,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
             return;
         }
         if (displaying) updateUI();
-        hp = Math.Min(hp, getCombatMaxHP());
+        hp = Mathf.Min(hp, getCombatMaxHP());
         StartCoroutine(FindTarget());
         if (attacking == null) {
             period = getCombatAtkspd() / 2;
@@ -90,7 +89,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     private void Attack()
     {
         if (attacking == null) return;
-        en = Math.Min(en+25, 100);
+        en = Mathf.Min(en+25, 100);
         GameObject s;
         if (ranged) {
             int direction = (tag == "Ally") ? 1 : -1;
@@ -114,7 +113,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
         float min = Mathf.Infinity;
         GameObject nearest = null;
         foreach (GameObject t in targets) {
-            float dist = Math.Abs(transform.position.x - t.transform.position.x);
+            float dist = Mathf.Abs(transform.position.x - t.transform.position.x);
             if (dist < min) {
                 min = dist;
                 nearest = t;
@@ -158,7 +157,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void receiveDamage(float dmg) 
     {
         hp -= dmg;
-        en = Math.Min(en+1, 100);
+        en = Mathf.Min(en+1, 100);
     }
 
     public void levelUpHp()
