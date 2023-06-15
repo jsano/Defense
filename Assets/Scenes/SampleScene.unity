@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7118388977324117432, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -397,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5719184081644842298, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7118388977324117432, guid: d627a4f56d196a14dacb9a9e3b9e2397, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -451,10 +459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1696419595, guid: 3295cfde5e5bcdf4ca561767df15e54e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7552299768000813350, guid: 3295cfde5e5bcdf4ca561767df15e54e, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -569,10 +573,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 610812463, guid: 6802de090fac316429d9265ed08b6107, type: 3}
-      propertyPath: s
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8605124356634944626, guid: 6802de090fac316429d9265ed08b6107, type: 3}
       propertyPath: m_Pivot.x
       value: 0

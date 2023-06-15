@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     [SerializeField] protected int cost;
     [SerializeField] protected int upgradeCost;
     public int ID;
+    private int drop = 50; // Only for enemy use
 
     [Header("Stats")]
     [SerializeField] protected float speed;
@@ -47,7 +48,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     {
         enemyLevel = 1;
         layer = GetComponent<SpriteRenderer>().sortingOrder;
-        hp = baseHp;
+        hp = getCombatMaxHP();
         period = baseAtkspd/2;
         BarContainer bc = Instantiate(barContainer, transform, false).GetComponent<BarContainer>();
         if (speed == 0) bc.forCastle = true;
@@ -84,6 +85,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
             p.startColor = baseColor;
+            if (tag == "Enemy") Player.money += getDropMoney();
             Destroy(gameObject);
         }
     }
@@ -229,6 +231,11 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     public int getUpgradeCost()
     {
         return (int) (upgradeCost * Constants.ratios[getCurrentLv()]);
+    }
+
+    public int getDropMoney()
+    {
+        return (int) (drop * Constants.ratios[getCurrentLv()]);
     }
 
 }

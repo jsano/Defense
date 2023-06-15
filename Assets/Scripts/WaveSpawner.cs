@@ -22,10 +22,18 @@ public class WaveSpawner : MonoBehaviour
     private Spawn[] lv = {
         new Spawn(1, 0, 1),
         new Spawn(1, 5, 1),
-        new Spawn(1, 10, 2),
+        new Spawn(1, 10, 1),
+        new Spawn(1, 11, 1),
+        new Spawn(1, 12, 1),
+        new Spawn(1, 13, 1),
         new Spawn(1, 15, 2),
-        new Spawn(1, 20, 3),
-        new Spawn(1, 25, 3),
+        new Spawn(1, 20, 2),
+        new Spawn(1, 25, 2),
+        new Spawn(1, 26, 2),
+        new Spawn(1, 30, 3),
+        new Spawn(1, 35, 3),
+        new Spawn(1, 40, 3),
+        new Spawn(1, 41, 3),
     };
 
     // Start is called before the first frame update
