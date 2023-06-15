@@ -40,9 +40,8 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
         Instantiate(castle, Constants.CASTLEPOS, Quaternion.identity);
-        foreach (Spawn s in lv) {
-            StartCoroutine(spawn(s));
-        }
+        //foreach (Spawn s in lv) StartCoroutine(spawn(s));
+        InvokeRepeating("spawnEndless", 0, 5);
     }
 
     private IEnumerator spawn(Spawn s)
@@ -51,6 +50,17 @@ public class WaveSpawner : MonoBehaviour
         GameObject e = Instantiate(srcPrefabs[s.id]);
         e.transform.position = new Vector3(Constants.ENEMYX, Constants.GROUNDY, 0);
         for (int i = 1; i < s.level; i++) {
+            e.GetComponent<Unit>().levelUpHp();
+            e.GetComponent<Unit>().enemyLevel += 1;
+        }
+    }
+
+    private void spawnEndless()
+    {
+        if (Player.dead) return;
+        GameObject e = Instantiate(srcPrefabs[(int)(Random.Range(1, Player.eowned + 1))]);
+        e.transform.position = new Vector3(Constants.ENEMYX, Constants.GROUNDY, 0);
+        for (int i = 1; i < Mathf.Min(Constants.ratios.Length - 1, Time.realtimeSinceStartup / 30); i++) {
             e.GetComponent<Unit>().levelUpHp();
             e.GetComponent<Unit>().enemyLevel += 1;
         }

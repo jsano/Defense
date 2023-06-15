@@ -16,6 +16,7 @@ public class Pause : MonoBehaviour
 
     public void pause()
     {
+        if (Player.dead) return;
         Time.timeScale = 0;
         foreach (GameObject g in p)
             g.SetActive(true);

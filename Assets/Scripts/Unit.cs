@@ -58,6 +58,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
     // Update is called once per frame
     void Update()
     {
+        if (Player.dead) return;
         if (hp <= 0) {
             toDestroy = true;
             return;
@@ -85,7 +86,13 @@ public class Unit : MonoBehaviour, ISelectHandler, IDeselectHandler
             GameObject p0 = Instantiate(dissolve, transform.position, transform.rotation);
             ParticleSystem.MainModule p = p0.GetComponent<ParticleSystem>().main;
             p.startColor = baseColor;
-            if (tag == "Enemy") Player.money += getDropMoney();
+            if (tag == "Enemy") {
+                Player.money += getDropMoney();
+                Player.kills += 1;
+            } else if (speed == 0) {
+                Player.dead = true;
+                Player.died();
+            }
             Destroy(gameObject);
         }
     }
